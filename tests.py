@@ -32,6 +32,18 @@ def test_prop_decoding():
     assert props.getProperty(b'name') == u'üben'
 
 
+def test_raw_prop_getter():
+    props = Properties()
+    props.setProperty(b'name', u'ä')
+    assert props.getProperty(b'name', raw=True) == b'\\u00e4'
+
+
+def test_raw_prop_setter():
+    props = Properties()
+    props.setProperty(b'name', b'\\u00e4', raw=True)
+    assert props.getPropertyDict()[b'name'] == b'\\u00e4'
+
+
 def test_prop_encoding():
     """If you write unicode data to the properties dict, it should be encoded
     transparently to ascii."""

@@ -21,10 +21,15 @@ codecs.register_error('unicode_escape', unicode_escape_handler)
 
 
 class Properties(pyjavaproperties.Properties):
-    def getProperty(self, key):
-        return decode_unicode(super(Properties, self).getProperty(key))
+    def getProperty(self, key, raw=None):
+        value = super(Properties, self).getProperty(key)
+        if raw:
+            return value
+        return decode_unicode(value)
 
-    def setProperty(self, key, value):
+    def setProperty(self, key, value, raw=None):
+        if raw:
+            return super(Properties, self).setProperty(key, value)
         return super(Properties, self).setProperty(key, encode_unicode(value))
 
 
