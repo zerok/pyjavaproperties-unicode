@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='pyjavaproperties-unicode',
-    version='0.1',
+    version='0.1.1',
     author='Horst Gutmann',
     author_email='horst@zerokspot.com',
     py_modules=['pyjavapropertiesu'],
