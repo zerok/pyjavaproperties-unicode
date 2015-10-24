@@ -14,7 +14,8 @@ import pyjavaproperties
 
 
 def unicode_escape_handler(e):
-    return (u'\\u%04x' % ord(e.object[e.start:e.end]), e.end)
+    s = ''.join(u'\\u%04x' % ord(x) for x in e.object[e.start:e.end])
+    return (s, e.end)
 
 
 codecs.register_error('unicode_escape', unicode_escape_handler)
